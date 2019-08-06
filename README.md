@@ -2,7 +2,7 @@
 
 Implemented Router Guard canDeactivate and Resolve in the same app.
 Applied canDeactivate at user update form.
-Apllied Resolve on single user details ( When clicking name of user for getting user details from userlist homepage )
+Applied Resolve on single user details ( When clicking name of user for getting user details from userlist homepage )
 
 # Finalcrud
 
