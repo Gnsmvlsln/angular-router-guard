@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from './users/user';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -25,10 +26,12 @@ export class UserService {
     updateWebsite:"",
     id: null
   }
+  SingleUser={};
   //  num:12;
   private url = 'https://jsonplaceholder.typicode.com/users'
 
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient,
+              private router: Router) { 
 
   }
 
@@ -40,10 +43,11 @@ export class UserService {
     this.arrayAtservice = details;
     console.log('details', this.arrayAtservice)
   }
-  
+
   hasData() {
     return this.arrayAtservice && this.arrayAtservice.length;
   }
+
   getData() {
     return this.arrayAtservice;
   }
@@ -58,12 +62,6 @@ export class UserService {
       website:website
     }
     this.arrayAtservice.push(user);
-    // this.userinput.name = firstname;
-    // this.userinput.uname = username;
-    // this.userinput.id = this.userinput.id + 1;
-    // this.userData={name:this.userinput.name,username:this.userinput.uname,id:this.userinput.id+1}
-    // this.addUser(this.userData)
-
   }
 
   updateUserData(userData) {
@@ -76,16 +74,6 @@ export class UserService {
   }
   compareUser(data) {
     console.log(data)
-    // this.arrayAtservice.map(obj => {
-    //   if (obj.id == data.id) {
-    //     console.log('object id', obj.id, 'argument id', data.id)
-    //     this.arrayAtservice[obj.id].name = data.name;
-    //   }
-    // })
-    // console.log('type cheythath', data.name);
-    // this.arrayAtservice.map(user=>data.id)
-    // this.arrayAtservice.map(obj => data.id === obj.id);
-    // console.log(console.log(this.arrayAtservice));
     const index = this.arrayAtservice.findIndex(obj => data.id == obj.id);
     this.arrayAtservice[index].name = data.name;
     this.arrayAtservice[index].username = data.uname;
@@ -108,6 +96,18 @@ export class UserService {
   getNewId() {
     return (this.arrayAtservice[this.arrayAtservice.length - 1].id) + 1;
   }
+
+   getUserById(row) {
+     this.http.get(this.url)
+     .subscribe((userData)=>{
+            this.SingleUser = userData[row.id-1]
+            this.router.navigate(['/users',row.id])
+     })
+   }
+
+   getUserSIngle(){
+     return this.SingleUser;
+   }
 }
 
 

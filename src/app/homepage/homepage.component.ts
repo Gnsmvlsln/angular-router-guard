@@ -68,7 +68,10 @@ export class HomepageComponent implements OnInit {
   }
 
   gotopost(row){
-    this.router.navigateByUrl(`users?data=${JSON.stringify(row)}`)
+    this.userservice.getUserById(row)
+    console.log('gotopost',row.id)
+    
+    // this.router.navigateByUrl(`users?data=${JSON.stringify(row)}`)
   }
    displayedColumns: string[] = [ 'name', 'username', 'email','phone','website','button','deletebutton'];
    

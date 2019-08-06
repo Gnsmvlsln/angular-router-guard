@@ -4,6 +4,7 @@ import { UserformComponent } from './userform/userform.component';
 import { UsersComponent } from './users/users.component';
 import { HomepageComponent } from './homepage/homepage.component';
 import { CanDeactivateGuard } from './userform/can-deactivate-guard.service';
+import { UserResolver } from './users/user-resolver-service';
 
 const routes: Routes = [
   {
@@ -11,7 +12,8 @@ const routes: Routes = [
     component: HomepageComponent
   },
   {
-    path:'users',
+    path:'users/:id',
+    resolve:{user: UserResolver},
     component: UsersComponent
   },
   {

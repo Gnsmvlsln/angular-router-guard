@@ -56,18 +56,18 @@ export class UserformComponent implements OnInit, CanComponentDeactivate {
     this.router.navigate(['/']);
   }
 
-  onSubmit(){
-    this.submitted = true;
-    console.log('signup form',this.userForm)
-    const firstname=this.userForm.get('name').value;
-    const username=this.userForm.get('uname').value;
-    const email=this.userForm.get('email').value;
-    const phone=this.userForm.get('phone').value;
-    const website=this.userForm.get('website').value;
-    console.log('maaaaaad',firstname)
-    this.userservice.arrayForUserform(firstname,username,email,phone,website)
-    this.router.navigate(['/']);
-  }
+  // onSubmit(){
+  //   this.submitted = true;
+  //   console.log('signup form',this.userForm)
+  //   const firstname=this.userForm.get('name').value;
+  //   const username=this.userForm.get('uname').value;
+  //   const email=this.userForm.get('email').value;
+  //   const phone=this.userForm.get('phone').value;
+  //   const website=this.userForm.get('website').value;
+  //   console.log('maaaaaad',firstname)
+  //   this.userservice.arrayForUserform(firstname,username,email,phone,website)
+  //   this.router.navigate(['/']);
+  // }
   canDeactivate(): Observable<boolean> | Promise<boolean> | boolean{
     if(this.allowEdit){
       return true;

@@ -8,7 +8,3 @@ export interface User {
     website:string;
     email:string;
 }
-
-// export interface Address {
-//     city: string;
-// }
