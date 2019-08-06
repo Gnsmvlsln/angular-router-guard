@@ -1,3 +1,9 @@
+# Task Details
+
+Implemented Router Guard canDeactivate and Resolve in the same app.
+Applied canDeactivate at user update form.
+Apllied Resolve on single user details ( When clicking name of user for getting user details from userlist homepage )
+
 # Finalcrud
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.3.
