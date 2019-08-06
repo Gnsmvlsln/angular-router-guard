@@ -2,7 +2,8 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { UserformComponent } from './userform/userform.component';
 import { UsersComponent } from './users/users.component';
-import { HomepageComponent } from './homepage/homepage.component'
+import { HomepageComponent } from './homepage/homepage.component';
+import { CanDeactivateGuard } from './userform/can-deactivate-guard.service';
 
 const routes: Routes = [
   {
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {
     path:'user_form',
-    component: UserformComponent
+    component: UserformComponent,
+    canDeactivate: [CanDeactivateGuard]
   }
 ];
 

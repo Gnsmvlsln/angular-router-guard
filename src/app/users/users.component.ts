@@ -8,7 +8,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsersComponent implements OnInit {
   data;
-  constructor(private route: ActivatedRoute) { 
+  constructor(private route: ActivatedRoute)
+   { 
     this.route.queryParams.subscribe(param => {
       this.data = JSON.parse(param.data);
       console.log(this.data);

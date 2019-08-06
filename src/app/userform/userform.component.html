@@ -1,7 +1,9 @@
 
 <div class="parent">
   <h1>U S E R</h1>F O R M
-<form [formGroup]="userForm" (ngSubmit)="onSubmit()" class="example-form">
+  
+<form [formGroup]="userForm"  class="example-form"> 
+  <!-- (ngSubmit)="onSubmit()" -->
   <!-- ng-submit="onCreateUser(userInput.name,userInput.uname,userInput.email)" -->
   <p>
     <mat-form-field class="example-full-width" appearance="outline">
@@ -35,12 +37,17 @@
   <p>
       <br>
     </p>
-  <button mat-raised-button color="primary" class="button-full-width" (click)='submitit()' routerLink="/">
+  <button mat-raised-button color="primary" class="button-full-width" (click)='submitit()'>
     UPDATE
   </button>
-  <button mat-raised-button color="accent" class="button-full-width" type="submit">
-    SUBMIT
+  <button mat-raised-button color="warn" class="button-full-width" routerLink="/">
+  CANCEL
   </button>
+  <!-- <p><a routerLink="/">Back to homepage</a></p> -->
+
+  <!-- <button mat-raised-button color="accent" class="button-full-width" type="submit">
+    SUBMIT
+  </button> -->
 </form>
 </div>
 <!--  -->

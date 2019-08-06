@@ -2,14 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { CanComponentDeactivate } from './can-deactivate-guard.service';
+import { Observable } from 'rxjs'
 
 @Component({
   selector: 'app-userform',
   templateUrl: './userform.component.html',
   styleUrls: ['./userform.component.css']
 })
-export class UserformComponent implements OnInit {
+export class UserformComponent implements OnInit, CanComponentDeactivate {
   submitted= false;
+  allowEdit = false;
   userForm : FormGroup;
   userInput={
     name:"",
@@ -19,6 +22,7 @@ export class UserformComponent implements OnInit {
     website:"",
     id:null
   }
+  changesSaved = false;
   obj;
 
   constructor(private userservice: UserService,
@@ -47,6 +51,9 @@ export class UserformComponent implements OnInit {
 
   submitit(){
     this.userservice.compareUser(this.userInput);
+    this.changesSaved = true;
+    this.allowEdit = true;
+    this.router.navigate(['/']);
   }
 
   onSubmit(){
@@ -60,5 +67,20 @@ export class UserformComponent implements OnInit {
     console.log('maaaaaad',firstname)
     this.userservice.arrayForUserform(firstname,username,email,phone,website)
     this.router.navigate(['/']);
+  }
+  canDeactivate(): Observable<boolean> | Promise<boolean> | boolean{
+    if(this.allowEdit){
+      return true;
+    }
+    if(this.userInput.name !== this.userservice.dataToUpdate.updateName ||
+       this.userInput.uname !==this.userservice.dataToUpdate.updateUname ||
+       this.userInput.email !==this.userservice.dataToUpdate.updateEmail ||
+       this.userInput.phone !==this.userservice.dataToUpdate.updatePhone || 
+       this.userInput.website !==this.userservice.dataToUpdate.updateWebsite
+       && !this.changesSaved){
+      return confirm('Do you want discard the changes ?')
+    }else{
+      return true;
+    }
   }
 }

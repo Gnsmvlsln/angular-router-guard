@@ -16,6 +16,7 @@ import {MatInputModule} from '@angular/material';
 import {MatButtonModule} from '@angular/material/button';
 import {MatFormFieldControl} from '@angular/material/form-field';
 import {MatCardModule} from '@angular/material/card';
+import {CanDeactivateGuard} from './userform/can-deactivate-guard.service';
 // import {DemoMaterialModule} from './material.module';
 
 @NgModule({
@@ -39,7 +40,7 @@ import {MatCardModule} from '@angular/material/card';
     // FormsModule,
     ReactiveFormsModule
   ],
-  providers: [UserService],
+  providers: [UserService, CanDeactivateGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
